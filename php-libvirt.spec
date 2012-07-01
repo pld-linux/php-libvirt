@@ -13,10 +13,11 @@ BuildRequires:	libvirt-devel
 BuildRequires:	libxml2-devel >= 2.0.0
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
-BuildRequires:	php-devel
+BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.461
-Requires:	php-common
+BuildRequires:	rpmbuild(macros) >= 1.519
+%{?requires_php_extension}
+Requires:	php-common >= 4:5.0.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_phpdocdir		%{_docdir}/phpdoc
@@ -59,6 +60,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%php_webserver_restart
+
+%postun
+if [ "$1" = 0 ]; then
+	%php_webserver_restart
+fi
 
 %files
 %defattr(644,root,root,755)
