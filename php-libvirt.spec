@@ -2,7 +2,7 @@ Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		php-libvirt
 Version:	0.4.5
-Release:	2
+Release:	3
 # COPYING contains LGPL v2.1, but README specifies plain GPL
 License:	GPL
 Group:		Development/Languages/PHP
@@ -17,7 +17,7 @@ BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.519
 %{?requires_php_extension}
-Requires:	php-common >= 4:5.0.4
+Requires:	php(core) >= 5.0.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_phpdocdir		%{_docdir}/phpdoc
