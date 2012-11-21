@@ -2,7 +2,7 @@ Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		php-libvirt
 Version:	0.4.6
-Release:	1
+Release:	2
 # COPYING contains LGPL v2.1, but README specifies plain GPL
 License:	GPL
 Group:		Development/Languages/PHP
@@ -54,7 +54,6 @@ Dokumentacja do wiązania php-libvirt.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PHPCDIR=%{php_sysconfdir}/conf.d
@@ -74,7 +73,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{php_extensiondir}/libvirt-php.so
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/*.ini
 
 %files phpdoc
 %defattr(644,root,root,755)
