@@ -2,7 +2,7 @@ Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		php-libvirt
 Version:	0.4.8
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	ftp://libvirt.org/libvirt/php/libvirt-php-%{version}.tar.gz
