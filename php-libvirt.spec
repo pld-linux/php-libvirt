@@ -12,12 +12,12 @@
 Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		%{php_name}-%{modname}
-Version:	0.4.8
-Release:	3
+Version:	0.5.1
+Release:	1
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	ftp://libvirt.org/libvirt/php/libvirt-php-%{version}.tar.gz
-# Source0-md5:	b634cb6415e8f01324e626acadb9e5dc
+# Source0-md5:	8d41bac28f7fb9a27b7a1958a08cb8a8
 URL:		http://libvirt.org/php/
 BuildRequires:	%{php_name}-devel
 BuildRequires:	libvirt-devel >= 0.6.2
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 	PHPCDIR=%{php_sysconfdir}/conf.d \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libvirt*
+chmod 755 $RPM_BUILD_ROOT%{php_extensiondir}/*.so
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -83,7 +86,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %attr(755,root,root) %{php_extensiondir}/libvirt-php.so
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/*.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/libvirt-php.ini
 
 %if %{with phpdoc}
 %files phpdoc
