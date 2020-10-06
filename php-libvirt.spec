@@ -67,13 +67,12 @@ Dokumentacja do wiązania php-libvirt.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	PHPCDIR=%{php_sysconfdir}/conf.d \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{php_extensiondir}/*.la
-
-#chmod 755 $RPM_BUILD_ROOT%{php_extensiondir}/*.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
