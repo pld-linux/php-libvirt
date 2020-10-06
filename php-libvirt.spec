@@ -12,22 +12,24 @@
 Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		%{php_name}-%{modname}
-Version:	0.5.1
+Version:	0.5.5
 Release:	1
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
-Source0:	ftp://libvirt.org/libvirt/php/libvirt-php-%{version}.tar.gz
-# Source0-md5:	8d41bac28f7fb9a27b7a1958a08cb8a8
-URL:		http://libvirt.org/php/
+Source0:	https://libvirt.org/sources/php/libvirt-php-%{version}.tar.gz
+# Source0-md5:	28fb7e2e216805e5aa5d5744fb3fd303
+URL:		https://libvirt.org/php/
 BuildRequires:	%{php_name}-devel
-BuildRequires:	libvirt-devel >= 0.6.2
+BuildRequires:	%{php_name}-pecl-imagick
+# libvirt, libvirt-qemu
+BuildRequires:	libvirt-devel >= 1.2.13
 BuildRequires:	libxml2-devel >= 2.0.0
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
-Requires:	libvirt >= 0.6.2
+Requires:	libvirt >= 1.2.13
 Provides:	php(%{modname}) = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,6 +60,7 @@ Dokumentacja do wiązania php-libvirt.
 
 %build
 %configure \
+	--disable-silent-rules \
 	--with-html-dir=%{_phpdocdir}
 
 %{__make}
@@ -68,8 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 	PHPCDIR=%{php_sysconfdir}/conf.d \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libvirt*
-chmod 755 $RPM_BUILD_ROOT%{php_extensiondir}/*.so
+%{__rm} $RPM_BUILD_ROOT%{php_extensiondir}/*.la
+
+#chmod 755 $RPM_BUILD_ROOT%{php_extensiondir}/*.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
