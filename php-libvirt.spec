@@ -18,8 +18,11 @@ License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	https://libvirt.org/sources/php/libvirt-php-%{version}.tar.gz
 # Source0-md5:	28fb7e2e216805e5aa5d5744fb3fd303
+Patch0:		php-libvirt-no-common.patch
 URL:		https://libvirt.org/php/
 BuildRequires:	%{php_name}-devel
+# as specified by `php-config --php-binary`
+BuildRequires:	%{php_name}-program
 BuildRequires:	%{php_name}-pecl-imagick
 # libvirt, libvirt-qemu
 BuildRequires:	libvirt-devel >= 1.2.13
@@ -57,6 +60,7 @@ Dokumentacja do wiązania php-libvirt.
 
 %prep
 %setup -q -n libvirt-php-%{version}
+%patch0 -p1
 
 %build
 %configure \

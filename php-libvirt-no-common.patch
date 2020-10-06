@@ -1,0 +1,201 @@
+--- libvirt-php-0.5.5/src/libvirt-connection.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-connection.h	2020-10-06 17:26:49.496920124 +0200
+@@ -46,7 +46,7 @@
+             RETURN_FALSE;                                                      \
+     } while (0)
+ 
+-int le_libvirt_connection;
++extern int le_libvirt_connection;
+ 
+ typedef struct _php_libvirt_connection {
+     virConnectPtr conn;
+--- libvirt-php-0.5.5/src/libvirt-connection.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-connection.c	2020-10-06 17:51:56.241895065 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("connection");
+ 
++int le_libvirt_connection;
++
+ /*
+  * Private function name:   free_resources_on_connection
+  * Since version:           0.4.2
+--- libvirt-php-0.5.5/src/libvirt-domain.h.orig	2020-02-07 10:28:53.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-domain.h	2020-10-06 17:27:17.735054051 +0200
+@@ -120,7 +120,7 @@
+     PHP_FE(libvirt_list_active_domains,          arginfo_libvirt_conn)                         \
+     PHP_FE(libvirt_list_inactive_domains,        arginfo_libvirt_conn)
+ 
+-int le_libvirt_domain;
++extern int le_libvirt_domain;
+ 
+ typedef struct _php_libvirt_domain {
+     virDomainPtr domain;
+--- libvirt-php-0.5.5/src/libvirt-domain.c.orig	2020-02-07 10:28:53.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-domain.c	2020-10-06 17:52:15.516230584 +0200
+@@ -15,6 +15,8 @@
+ 
+ DEBUG_INIT("domain");
+ 
++int le_libvirt_domain;
++
+ void
+ php_libvirt_domain_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-network.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-network.h	2020-10-06 17:27:35.602649121 +0200
+@@ -45,7 +45,7 @@
+     PHP_FE(libvirt_list_all_networks,       arginfo_libvirt_conn_optflags)     \
+     PHP_FE(libvirt_list_networks,           arginfo_libvirt_conn_optflags)
+ 
+-int le_libvirt_network;
++extern int le_libvirt_network;
+ 
+ typedef struct _php_libvirt_network {
+     virNetworkPtr network;
+--- libvirt-php-0.5.5/src/libvirt-network.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-network.c	2020-10-06 17:52:32.913801854 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("network");
+ 
++int le_libvirt_network;
++
+ void
+ php_libvirt_network_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-nodedev.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-nodedev.h	2020-10-06 17:27:58.963862975 +0200
+@@ -35,7 +35,7 @@
+             RETURN_FALSE;                                                      \
+     } while (0)
+ 
+-int le_libvirt_nodedev;
++extern int le_libvirt_nodedev;
+ 
+ typedef struct _php_libvirt_nodedev {
+     virNodeDevicePtr device;
+--- libvirt-php-0.5.5/src/libvirt-nodedev.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-nodedev.c	2020-10-06 17:53:03.965416410 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("nodedev");
+ 
++int le_libvirt_nodedev;
++
+ void
+ php_libvirt_nodedev_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-nwfilter.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-nwfilter.h	2020-10-06 17:28:10.961153024 +0200
+@@ -42,7 +42,7 @@
+             RETURN_FALSE;                                                      \
+     } while (0)                                                                \
+ 
+-int le_libvirt_nwfilter;
++extern int le_libvirt_nwfilter;
+ 
+ typedef struct _php_libvirt_nwfilter {
+     virNWFilterPtr nwfilter;
+--- libvirt-php-0.5.5/src/libvirt-nwfilter.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-nwfilter.c	2020-10-06 17:53:18.179488816 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("nwfilter");
+ 
++int le_libvirt_nwfilter;
++
+ void
+ php_libvirt_nwfilter_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-snapshot.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-snapshot.h	2020-10-06 17:28:28.618737181 +0200
+@@ -38,7 +38,7 @@
+             RETURN_FALSE;                                                      \
+     } while (0)                                                                \
+ 
+-int le_libvirt_snapshot;
++extern int le_libvirt_snapshot;
+ 
+ typedef struct _php_libvirt_snapshot {
+     virDomainSnapshotPtr snapshot;
+--- libvirt-php-0.5.5/src/libvirt-snapshot.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-snapshot.c	2020-10-06 17:53:35.153704739 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("snapshot");
+ 
++int le_libvirt_snapshot;
++
+ void php_libvirt_snapshot_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+     php_libvirt_snapshot *snapshot = (php_libvirt_snapshot *)rsrc->ptr;
+--- libvirt-php-0.5.5/src/libvirt-storage.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-storage.h	2020-10-06 17:28:47.059695378 +0200
+@@ -83,8 +83,8 @@
+             RETURN_FALSE;                                                      \
+     } while (0)                                                                \
+ 
+-int le_libvirt_storagepool;
+-int le_libvirt_volume;
++extern int le_libvirt_storagepool;
++extern int le_libvirt_volume;
+ 
+ typedef struct _php_libvirt_storagepool {
+     virStoragePoolPtr pool;
+--- libvirt-php-0.5.5/src/libvirt-storage.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-storage.c	2020-10-06 17:53:56.554817509 +0200
+@@ -12,6 +12,9 @@
+ 
+ DEBUG_INIT("storage");
+ 
++int le_libvirt_storagepool;
++int le_libvirt_volume;
++
+ void
+ php_libvirt_storagepool_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-stream.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-stream.h	2020-10-06 17:23:35.320150821 +0200
+@@ -20,7 +20,7 @@
+     PHP_FE(libvirt_stream_send,   arginfo_libvirt_stream_send)                 \
+     PHP_FE(libvirt_stream_recv,   arginfo_libvirt_stream_recv)
+ 
+-int le_libvirt_stream;
++extern int le_libvirt_stream;
+ 
+ typedef struct _php_libvirt_stream {
+     virStreamPtr stream;
+--- libvirt-php-0.5.5/src/libvirt-stream.c.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-stream.c	2020-10-06 17:54:37.943636225 +0200
+@@ -11,6 +11,8 @@
+ 
+ DEBUG_INIT("stream");
+ 
++int le_libvirt_stream;
++
+ void
+ php_libvirt_stream_dtor(virt_resource *rsrc TSRMLS_DC)
+ {
+--- libvirt-php-0.5.5/src/libvirt-php.h.orig	2019-12-30 07:03:57.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-php.h	2020-10-06 17:31:43.808879304 +0200
+@@ -155,7 +155,7 @@
+     int binding_resources_count;
+ ZEND_END_MODULE_GLOBALS(libvirt)
+ 
+-ZEND_DECLARE_MODULE_GLOBALS(libvirt)
++ZEND_EXTERN_MODULE_GLOBALS(libvirt)
+ 
+ /* Private definitions */
+ void set_error(char *msg TSRMLS_DC);
+--- libvirt-php-0.5.5/src/libvirt-php.c.orig	2020-01-17 07:41:48.000000000 +0100
++++ libvirt-php-0.5.5/src/libvirt-php.c	2020-10-06 17:50:18.836830402 +0200
+@@ -40,6 +40,8 @@
+ const char *features_binaries[] = { NULL };
+ #endif
+ 
++ZEND_DECLARE_MODULE_GLOBALS(libvirt)
++
+ ZEND_BEGIN_ARG_INFO_EX(arginfo_libvirt_connect, 0, 0, 0)
+ ZEND_ARG_INFO(0, url)
+ ZEND_ARG_INFO(0, readonly)
