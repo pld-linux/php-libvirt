@@ -12,13 +12,12 @@
 Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		%{php_name}-%{modname}
-Version:	0.5.5
+Version:	0.5.6
 Release:	1
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
-Source0:	https://libvirt.org/sources/php/libvirt-php-%{version}.tar.gz
-# Source0-md5:	28fb7e2e216805e5aa5d5744fb3fd303
-Patch0:		php-libvirt-no-common.patch
+Source0:	https://libvirt.org/sources/php/libvirt-php-%{version}.tar.xz
+# Source0-md5:	13f4614f7bdafc39b0cbf8dcb4b845b6
 URL:		https://libvirt.org/php/
 BuildRequires:	%{php_name}-devel
 # as specified by `php-config --php-binary`
@@ -31,6 +30,8 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.666
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 %{?requires_php_extension}
 Requires:	libvirt >= 1.2.13
 Provides:	php(%{modname}) = %{version}
@@ -60,7 +61,6 @@ Dokumentacja do wiązania php-libvirt.
 
 %prep
 %setup -q -n libvirt-php-%{version}
-%patch0 -p1
 
 %build
 %configure \
