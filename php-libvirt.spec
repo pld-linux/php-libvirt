@@ -3,7 +3,7 @@
 %bcond_without	phpdoc		# package phpdoc
 
 # don't build for php53
-%if 0%{?_pld_builder:1} && "%{?php_suffix}" != "55"
+%if 0%{?_pld_builder:1} && "%{?php_suffix}" != "70"
 %undefine	with_phpdoc
 %endif
 
@@ -12,17 +12,16 @@
 Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		%{php_name}-%{modname}
-Version:	0.5.6
+Version:	0.5.8
 Release:	1
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
-Source0:	https://libvirt.org/sources/php/libvirt-php-%{version}.tar.xz
-# Source0-md5:	13f4614f7bdafc39b0cbf8dcb4b845b6
+Source0:	https://download.libvirt.org/php/libvirt-php-%{version}.tar.xz
+# Source0-md5:	d0295fabe1abcadae255eb4674b17392
 URL:		https://libvirt.org/php/
-BuildRequires:	%{php_name}-devel
+BuildRequires:	%{php_name}-devel >= 4:7.0
 # as specified by `php-config --php-binary`
-BuildRequires:	%{php_name}-program
-BuildRequires:	%{php_name}-pecl-imagick
+BuildRequires:	%{php_name}-program >= 4:7.0
 # libvirt, libvirt-qemu
 BuildRequires:	libvirt-devel >= 1.2.13
 BuildRequires:	libxml2-devel >= 2.0.0
