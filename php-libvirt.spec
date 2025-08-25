@@ -13,7 +13,7 @@ Summary:	PHP binding for libvirt
 Summary(pl.UTF-8):	Wiązanie PHP do libvirt
 Name:		%{php_name}-%{modname}
 Version:	0.5.8
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Development/Languages/PHP
 Source0:	https://download.libvirt.org/php/libvirt-php-%{version}.tar.xz
@@ -63,6 +63,7 @@ Dokumentacja do wiązania php-libvirt.
 
 %build
 %configure \
+	CPPFLAGS="-DATTRIBUTE_UNUSED= %{rpmcppflags}" \
 	--disable-silent-rules \
 	--with-html-dir=%{_phpdocdir}
 
